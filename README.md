@@ -12,14 +12,14 @@ journey - https://github.com/cloudhead/journey --This is a custom version.  Plea
 
  
 ###Current Version
-*v0.1: COMPLETE - Allow a user to register, and provide an API to send messages with a custom payload.
+v0.1: COMPLETE - Allow a user to register, and provide an API to send messages with a custom payload.
 
 ###Roadmap
-*v0.1: COMPLETE - Allow a user to register, and provide an API to send messages with a custom payload.
-*v0.15: Add better response for each rest call.  Return some useful information.
-*v0.2: Chat room functionality.  This will allow users to subscribe to a room and also receive room specific broadcasts
-*v0.3: Security.  Add heavy security to facility server2server communication and facility some way to verify users authenticity.
-*v0.4: Different Message Types.  This will simply the message handling on the javascript side
+* v0.1: COMPLETE - Allow a user to register, and provide an API to send messages with a custom payload.
+* v0.15: Add better response for each rest call.  Return some useful information.
+* v0.2: Chat room functionality.  This will allow users to subscribe to a room and also receive room specific broadcasts
+* v0.3: Security.  Add heavy security to facility server2server communication and facility some way to verify users authenticity.
+* v0.4: Different Message Types.  This will simply the message handling on the javascript side
 
 
 ##Usage
@@ -28,7 +28,7 @@ journey - https://github.com/cloudhead/journey --This is a custom version.  Plea
 Here is a simple example of what pushProxy.js can do.  Backend sample written in ColdFusion
 
 Start pushProxy
-```
+```shell
 sudo node pushProxy.js
 ```
 
@@ -70,9 +70,9 @@ payload = {
 ```
 
 Please note that for format of the payload and the command in the post.
-*The command in the post notifies pushProxy that it it wants to push.  This is the only command right now.
-*The payload for the send command must have the userId key in the json struct.  The userId could be a string or number.  It just has to match the userId sent in the register function.
-*I use the data to invoke the proper action with the arguments.  This is completely up you to you though.
+* The command in the post notifies pushProxy that it it wants to push.  This is the only command right now.
+* The payload for the send command must have the userId key in the json struct.  The userId could be a string or number.  It just has to match the userId sent in the register function.
+* I use the data to invoke the proper action with the arguments.  This is completely up you to you though.
 
 
 
