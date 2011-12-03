@@ -5,7 +5,17 @@ var utils = require("./utils");
 function sendMessage(userId, data){
 	var socket = userManager.getUser( userId );
 	socket.emit('message', data);
-	
+}
+
+function createRoom(room, users){
+	for(var i = 0,  l = users.length; i < l; i ++){
+		var socket = userManager.getUser(users[i]);
+		socket.join(room)
+	}
+}
+
+function sendRoomMessage(room, username, message){
+	io.sockets.in(room.toString()).emit('roomMessage', {room: room, username: username, message: message});
 }
 
 //Now so we can communicate with other web services
@@ -26,6 +36,10 @@ router.map(function () {
     	switch(params.command){
     		case "send":
     			sendMessage(data.userId, data.data);
+    			res.send(200, {}, {success:true});
+    			break;
+    		case "createRoom":
+    			createRoom(data.room, data.users);
     			res.send(200, {}, {success:true});
     			break;
     			
@@ -56,6 +70,10 @@ io.sockets.on('connection', function (socket) {
 	socket.on('register', function (data) {
 		console.log("Regiser: " + data.userId + " , " + socket.id);
 		userManager.addUser(data.userId, socket);
+	});
+	
+	socket.on('room', function( data ){
+		sendRoomMessage(data.room, data.username, data.message)
 	});
 	
 	socket.on('disconnect', function (data) {
