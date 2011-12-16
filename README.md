@@ -1,4 +1,4 @@
-#pushProxy.js - v0.1
+#pushProxy.js - v0.2
 
 ##Goal
 The goal is to create a language neutral push system.  By exposing a very simple RESTful API, we will create a powerful and flexible interface that will provide real time communication.
@@ -14,12 +14,13 @@ journey - https://github.com/cloudhead/journey --This is a custom version.  Plea
 
  
 ###Current Version
-v0.1: COMPLETE - Allow a user to register, and provide an API to send messages with a custom payload.
+v0.2: COMPLETE - Allow a user to register, and provide an API to send messages with a custom payload.
+Chat room functionality.  This will allow users to subscribe to a room and also receive room specific broadcasts
 
 ###Roadmap
 * v0.1: COMPLETE - Allow a user to register, and provide an API to send messages with a custom payload.
-* v0.15: Add better response for each rest call.  Return some useful information.
-* v0.2: Chat room functionality.  This will allow users to subscribe to a room and also receive room specific broadcasts
+* v0.2: COMPLETE - Chat room functionality.  This will allow users to subscribe to a room and also receive room specific broadcasts
+* v0.25: Add better response for each rest call.  Return some useful information.
 * v0.3: Security.  Add heavy security to facility server2server communication and facility some way to verify users authenticity.
 * v0.4: Different Message Types.  This will simply the message handling on the javascript side
 
