@@ -5,8 +5,8 @@ var utils = require("./utils");
 
 
 function sendMessage(userId, data){
-	var socket = userManager.getUser( userId );
-	socket.emit('message', data);
+	var user = userManager.getUser( userId );
+	user.socket.emit('message', data);
 }
 
 function createRoom(room, users){
