@@ -1,6 +1,8 @@
 //This guy is inteneded to map a "User Id" to socket io session Id.  Usefull for our api
+
 var userManager = require("./userManager");
 var utils = require("./utils");
+
 
 function sendMessage(userId, data){
 	var socket = userManager.getUser( userId );
@@ -9,13 +11,14 @@ function sendMessage(userId, data){
 
 function createRoom(room, users){
 	for(var i = 0,  l = users.length; i < l; i ++){
-		var socket = userManager.getUser(users[i]);
-		socket.join(room)
+		var user = userManager.getUser(users[i]);
+		console.log("user" + user.id);
+		user.joinRoom(room);
 	}
 }
 
 function sendRoomMessage(room, username, message){
-	io.sockets.in(room.toString()).emit('roomMessage', {room: room, username: username, message: message});
+	io.sockets.in( room.toString() ).emit('roomMessage', {room: room, username: username, message: message});
 }
 
 //Now so we can communicate with other web services
@@ -69,11 +72,13 @@ var io = require('socket.io').listen(api);
 io.sockets.on('connection', function (socket) {
 	socket.on('register', function (data) {
 		console.log("Regiser: " + data.userId + " , " + socket.id);
-		userManager.addUser(data.userId, socket);
+		var user =  userManager.addUser(data.userId, socket);
+		//setUpRooms(user);
 	});
 	
 	socket.on('room', function( data ){
-		sendRoomMessage(data.room, data.username, data.message)
+		console.log("room msg recieved");
+		sendRoomMessage(data.room, data.username, data.message);
 	});
 	
 	socket.on('disconnect', function (data) {
